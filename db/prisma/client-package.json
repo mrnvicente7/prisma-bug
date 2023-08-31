@@ -1,0 +1,6 @@
+{
+  "name": "@prisma-bug/db-client",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "browser": "index-browser.js"
+}
