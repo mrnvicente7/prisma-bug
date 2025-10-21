@@ -1,4 +1,4 @@
-import { PrismaClient } from '../db/dist'
+import { PrismaClient } from '../generated/client'
 
 const PrismaOrm = new PrismaClient()
 
@@ -27,17 +27,7 @@ async function getCars(opts: { includeModels?: boolean }) {
   return select
 }
 
-// Prisma 4 select return (expected):
-/* const select: (Car & {
-  carModel?: (CarModel & {
-    stock: {
-      forecasted: number;
-      onhand: number;
-    }[];
-  })[] | undefined;
-})[] */
-
-// Prisma 5 select return (not expected):
+// Prisma +5 select return (not expected):
 /* const select: ({
   carModel: {
     id: string;
@@ -48,3 +38,15 @@ async function getCars(opts: { includeModels?: boolean }) {
   id: string;
   name: string;
 })[] */
+
+// Test the function
+getCars({ includeModels: true })
+  .then((cars) => {
+    console.log('Prisma v6 - Cars:', cars)
+  })
+  .catch((error) => {
+    console.error('Error:', error)
+  })
+  .finally(() => {
+    PrismaOrm.$disconnect()
+  })
