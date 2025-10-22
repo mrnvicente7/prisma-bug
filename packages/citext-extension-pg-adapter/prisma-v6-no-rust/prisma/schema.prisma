@@ -1,6 +1,7 @@
 generator client {
-  provider = "prisma-client-js"
-  output   = "../generated/client"
+  provider   = "prisma-client-js"
+  output     = "../generated/client"
+  engineType = "client"
 }
 
 datasource db {
@@ -9,8 +10,9 @@ datasource db {
 }
 
 model Car {
-  id   String @id @default(uuid()) @db.Uuid
-  name String
+  id     String   @id @default(uuid()) @db.Uuid
+  name   String   @db.Citext
+  colors String[] @db.Citext
 
   carModel CarModel[]
 }
@@ -18,7 +20,7 @@ model Car {
 model CarModel {
   id     String @id @default(uuid()) @db.Uuid
   car_id String @db.Uuid
-  name   String
+  name   String @db.Citext
 
   car   Car                       @relation(fields: [car_id], references: [id])
   stock ConcessionaireInventory[]
@@ -26,7 +28,7 @@ model CarModel {
 
 model Concessionaire {
   id   String @id @default(uuid()) @db.Uuid
-  name String
+  name String @db.Citext
 
   created DateTime @default(now())
   updated DateTime @updatedAt

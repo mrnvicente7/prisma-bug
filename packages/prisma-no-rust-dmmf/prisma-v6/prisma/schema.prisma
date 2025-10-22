@@ -1,32 +1,31 @@
 generator client {
   provider = "prisma-client-js"
   output   = "../generated/client"
-  engineType      = "client" // enable Prisma ORM without Rust
 }
 
 datasource db {
   provider = "postgresql"
-  url = env("DATABASE_URL")
+  url      = env("DATABASE_URL")
 }
 
 model Car {
-  id String @id @default(uuid()) @db.Uuid
+  id   String @id @default(uuid()) @db.Uuid
   name String
 
   carModel CarModel[]
 }
 
 model CarModel {
-  id         String @id @default(uuid()) @db.Uuid
+  id     String @id @default(uuid()) @db.Uuid
   car_id String @db.Uuid
-  name       String
+  name   String
 
-  car         Car                 @relation(fields: [car_id], references: [id])
+  car   Car                       @relation(fields: [car_id], references: [id])
   stock ConcessionaireInventory[]
 }
 
 model Concessionaire {
-  id String @id @default(uuid()) @db.Uuid
+  id   String @id @default(uuid()) @db.Uuid
   name String
 
   created DateTime @default(now())
@@ -37,16 +36,16 @@ model Concessionaire {
 
 model ConcessionaireInventory {
   concessionaire_id String @db.Uuid
-  car_model_id String @db.Uuid
+  car_model_id      String @db.Uuid
 
-  onhand Int @default(0)
+  onhand     Int @default(0)
   forecasted Int @default(0)
 
   created DateTime @default(now())
   updated DateTime @updatedAt
 
   concessionaire Concessionaire @relation(fields: [concessionaire_id], references: [id])
-  carModel CarModel @relation(fields: [car_model_id], references: [id])
+  carModel       CarModel       @relation(fields: [car_model_id], references: [id])
 
   @@id([concessionaire_id, car_model_id])
 }

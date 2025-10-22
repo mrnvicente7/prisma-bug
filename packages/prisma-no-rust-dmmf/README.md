@@ -19,7 +19,7 @@ pnpm install
 
 ```bash
 # Navigate to the control test
-cd packages/prisma-no-rust/DMMF/prisma-v6
+cd packages/prisma-no-rust-dmmf/prisma-v6
 
 # Generate Prisma Client
 pnpm prisma:generate
