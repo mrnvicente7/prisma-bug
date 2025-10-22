@@ -142,29 +142,6 @@ generator client {
 
 ```json
 {
-  "name": "id",
-  "kind": "scalar",
-  "isList": false,
-  "isRequired": true,
-  "isUnique": false,
-  "isId": true,
-  "isReadOnly": false,
-  "hasDefaultValue": true,
-  "type": "String",
-  "nativeType": ["Uuid", []],
-  "default": {
-    "name": "uuid",
-    "args": [4]
-  },
-  "isGenerated": false,
-  "isUpdatedAt": false
-}
-```
-
-### Simplified DMMF (Without Rust) - Bug
-
-```json
-{
     "name": "Car",
     "dbName": null,
     "schema": null,
@@ -228,6 +205,33 @@ generator client {
     "uniqueFields": [],
     "uniqueIndexes": [],
     "isGenerated": false
+  }
+```
+
+### Simplified DMMF (Without Rust) - Bug
+
+```json
+{
+    "name": "Car",
+    "fields": [
+      {
+        "name": "id",
+        "kind": "scalar",
+        "type": "String"
+      },
+      {
+        "name": "name",
+        "kind": "scalar",
+        "type": "String"
+      },
+      {
+        "name": "carModel",
+        "kind": "object",
+        "type": "CarModel",
+        "relationName": "CarToCarModel"
+      }
+    ],
+    "dbName": null
   }
 ```
 
