@@ -165,10 +165,70 @@ generator client {
 
 ```json
 {
-  "name": "id",
-  "kind": "scalar",
-  "type": "String"
-}
+    "name": "Car",
+    "dbName": null,
+    "schema": null,
+    "fields": [
+      {
+        "name": "id",
+        "kind": "scalar",
+        "isList": false,
+        "isRequired": true,
+        "isUnique": false,
+        "isId": true,
+        "isReadOnly": false,
+        "hasDefaultValue": true,
+        "type": "String",
+        "nativeType": [
+          "Uuid",
+          []
+        ],
+        "default": {
+          "name": "uuid",
+          "args": [
+            4
+          ]
+        },
+        "isGenerated": false,
+        "isUpdatedAt": false
+      },
+      {
+        "name": "name",
+        "kind": "scalar",
+        "isList": false,
+        "isRequired": true,
+        "isUnique": false,
+        "isId": false,
+        "isReadOnly": false,
+        "hasDefaultValue": false,
+        "type": "String",
+        "nativeType": null,
+        "isGenerated": false,
+        "isUpdatedAt": false
+      },
+      {
+        "name": "carModel",
+        "kind": "object",
+        "isList": true,
+        "isRequired": true,
+        "isUnique": false,
+        "isId": false,
+        "isReadOnly": false,
+        "hasDefaultValue": false,
+        "type": "CarModel",
+        "nativeType": null,
+        "relationName": "CarToCarModel",
+        "relationFromFields": [],
+        "relationToFields": [],
+        "isGenerated": false,
+        "isUpdatedAt": false
+      }
+    ],
+    "primaryKey": null,
+    "uniqueFields": [],
+    "uniqueIndexes": [],
+    "isGenerated": false
+  }
 ```
 
 **Problem:** Missing 10+ critical properties!
